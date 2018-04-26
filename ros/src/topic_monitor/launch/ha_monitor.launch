@@ -1,0 +1,15 @@
+<launch>
+  <param name="monitor_topic_name" type="str" value="/ha_topic_monitor"/>
+  <param name="monitor_acceptable_delay_ms" type="int" value="200"/>
+  <param name="monitor_interval_ms" type="int" value="100"/>
+
+  <node pkg="topic_monitor" name="ha_topic_monitor01" type="topic_monitor_node">
+    <param name="pair_ping_topic_name" type="str" value="/ha_topic_monitor02"/>
+    <param name="ping_topic_name" type="str" value="/ha_topic_monitor01"/>
+  </node>
+
+  <node pkg="topic_monitor" name="ha_topic_monitor02" type="topic_monitor_node">
+    <param name="pair_ping_topic_name" type="str" value="/ha_topic_monitor01"/>
+    <param name="ping_topic_name" type="str" value="/ha_topic_monitor02"/>
+  </node>
+</launch>
